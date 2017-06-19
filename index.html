@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.3/pixi.js"></script>
+    <script src="js/keyboardHelper.js"></script>
+
+    <script>
+        // GLOBALS
+        var heros;
+        var state;
+        var renderer;
+        var stage;
+        var setup;
+        var setupObj
+        var destroy;
+        var doSetup;
+        var doDestroy;
+
+        var left = keyboardHelper(37);
+        var up = keyboardHelper(38);
+        var right = keyboardHelper(39);
+        var down = keyboardHelper(40);
+    </script>
+
+    <!-- Levels -->
+    <script src="js/characterSelectionScreen.js"></script>
+    <script src="js/level1.js"></script>
+
+    <script>
+        function gameLoop() {
+            requestAnimationFrame(gameLoop);
+
+            if (doSetup) {
+                setup(setupObj);
+                doSetup = false;
+            }
+
+            state();
+
+            if (doDestroy) {
+                destroy();
+                doDestroy = false;
+                doSetup = true;
+            }
+
+            renderer.render(stage);
+        }
+
+        // INIT
+        (function() {
+            doSetup = true;
+            state = characterSelectionScreen_state;
+            setup = characterSelectionScreen_setup;
+            destroy = characterSelectionScreen_destroy;
+
+            var type = "WebGL";
+            if (!PIXI.utils.isWebGLSupported()) {
+                type = "canvas";
+            }
+
+            PIXI.utils.sayHello(type);
+
+            renderer = PIXI.autoDetectRenderer(1280, 720);
+
+            document.body.appendChild(renderer.view);
+
+            stage = new PIXI.Container();
+
+            PIXI.loader
+                .add("images/sam-sprite.png")
+                .add("images/desdemona-sprite.png")
+                .add("images/bee-sprite.png")
+                .add("images/james-sprite.png")
+                .add("images/finn-sprite.png")
+                .add("images/chelsea-sprite.png")
+                .load(gameLoop);
+        }());
+    </script>
+</body>
+</html>
+
