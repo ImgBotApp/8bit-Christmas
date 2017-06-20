@@ -9,24 +9,25 @@
 </head>
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.3/pixi.js"></script>
-    <script src="js/keyboardHelper.js"></script>
+    <script src="js/Utils.js"></script>
 
     <script>
         // GLOBALS
-        var heros;
-        var state;
         var renderer;
         var stage;
-        var setup;
-        var setupObj
-        var destroy;
-        var doSetup;
+
+        var setupObj;
+        
         var doDestroy;
 
-        var left = keyboardHelper(37);
-        var up = keyboardHelper(38);
-        var right = keyboardHelper(39);
-        var down = keyboardHelper(40);
+        // LEVELS
+        var Levels = {};
+        var activeLevel;
+
+        var left = Utils.keyboardHelper(37);
+        var up = Utils.keyboardHelper(38);
+        var right = Utils.keyboardHelper(39);
+        var down = Utils.keyboardHelper(40);
     </script>
 
     <!-- Levels -->
@@ -37,17 +38,16 @@
         function gameLoop() {
             requestAnimationFrame(gameLoop);
 
-            if (doSetup) {
-                setup(setupObj);
-                doSetup = false;
+            if (setupObj) {
+                activeLevel.setup(setupObj);
+                setupObj = undefined;
             }
 
-            state();
+            activeLevel.state();
 
             if (doDestroy) {
-                destroy();
+                activeLevel.destroy();
                 doDestroy = false;
-                doSetup = true;
             }
 
             renderer.render(stage);
@@ -55,10 +55,8 @@
 
         // INIT
         (function() {
-            doSetup = true;
-            state = characterSelectionScreen_state;
-            setup = characterSelectionScreen_setup;
-            destroy = characterSelectionScreen_destroy;
+            activeLevel = Levels.characterSelectionScreen;
+            setupObj = {};
 
             var type = "WebGL";
             if (!PIXI.utils.isWebGLSupported()) {

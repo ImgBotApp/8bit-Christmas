@@ -1,67 +1,64 @@
-var level1_hero;
+Levels.level1 = {
+    hero: undefined,
+    setup: function(setupObj) {
+        console.log("Loading level 1");
 
-function level1_setup(setupObj) {
-    console.log("Loading level 1");
+        hero = setupObj.sprite;
 
-    level1_hero = setupObj;
+        hero.interactive = false;
+        hero.buttonMode = false;
 
-    level1_hero.interactive = false;
-    level1_hero.buttonMode = false;
+        left.press = function() {
+            hero.vx = -5;
+            hero.vy = 0;
+        };
+        left.release = function() {
+            if (!right.isDown && hero.vy === 0) {
+                hero.vx = 0;
+            }
+        };
 
-    left.press = function() {
-        level1_hero.vx = -5;
-        level1_hero.vy = 0;
-    };
-    left.release = function() {
-        if (!right.isDown && level1_hero.vy === 0) {
-            level1_hero.vx = 0;
-        }
-    };
+        up.press = function() {
+            hero.vy = -5;
+            hero.vx = 0;
+        };
+        up.release = function() {
+            if (!down.isDown && hero.vx === 0) {
+                hero.vy = 0;
+            }
+        };
 
-    up.press = function() {
-        level1_hero.vy = -5;
-        level1_hero.vx = 0;
-    };
-    up.release = function() {
-        if (!down.isDown && level1_hero.vx === 0) {
-            level1_hero.vy = 0;
-        }
-    };
+        right.press = function() {
+            hero.vx = 5;
+            hero.vy = 0;
+        };
+        right.release = function() {
+            if (!left.isDown && hero.vy === 0) {
+                hero.vx = 0;
+            }
+        };
 
-    right.press = function() {
-        level1_hero.vx = 5;
-        level1_hero.vy = 0;
-    };
-    right.release = function() {
-        if (!left.isDown && level1_hero.vy === 0) {
-            level1_hero.vx = 0;
-        }
-    };
+        down.press = function() {
+            hero.vy = 5;
+            hero.vx = 0;
+        };
+        down.release = function() {
+            if (!up.isDown && hero.vx === 0) {
+                hero.vy = 0;
+            }
+        };
 
-    down.press = function() {
-        level1_hero.vy = 5;
-        level1_hero.vx = 0;
-    };
-    down.release = function() {
-        if (!up.isDown && level1_hero.vx === 0) {
-            level1_hero.vy = 0;
-        }
-    };
+        console.log(hero);
 
-    console.log(level1_hero);
+        stage.addChild(hero);
+    },
+    state: function() {
+        hero.x += hero.vx;
+        hero.y += hero.vy;
+    },
+    destroy: function() {
+        console.log("Destroying level 1");
 
-    stage.addChild(level1_hero);
-}
-
-function level1_state() {
-    level1_hero.x += level1_hero.vx;
-    level1_hero.y += level1_hero.vy;
-}
-
-function level1_destroy() {
-    console.log("Destroying level 1");
-
-    state = level2;
-    setup = level2_setup;
-    destroy = level2_destroy;
+        activeLevel = Levels.level2;
+    }
 }
