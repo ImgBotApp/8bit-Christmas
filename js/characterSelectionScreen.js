@@ -25,6 +25,12 @@ function characterSelectionScreen_setup(setupObj) {
         },
         {
             "sprite": new PIXI.Sprite(
+                PIXI.loader.resources["images/padme-sprite.png"].texture
+            ),
+            "name": new PIXI.Text("Padme", {fontFamily: "Arial", fontSize: 22, fill: "white"})
+        },
+        {
+            "sprite": new PIXI.Sprite(
                 PIXI.loader.resources["images/finn-sprite.png"].texture
             ),
             "name": new PIXI.Text("Finn", {fontFamily: "Arial", fontSize: 22, fill: "white"})
@@ -34,6 +40,12 @@ function characterSelectionScreen_setup(setupObj) {
                 PIXI.loader.resources["images/sam-sprite.png"].texture
             ),
             "name": new PIXI.Text("Sam", {fontFamily: "Arial", fontSize: 22, fill: "white"})
+        },
+        {
+            "sprite": new PIXI.Sprite(
+                PIXI.loader.resources["images/ariel-sprite.png"].texture
+            ),
+            "name": new PIXI.Text("Ariel", {fontFamily: "Arial", fontSize: 22, fill: "white"})
         },
         {
             "sprite": new PIXI.Sprite(
