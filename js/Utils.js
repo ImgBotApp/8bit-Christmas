@@ -22,6 +22,31 @@ var Utils = {
 
         return undefined;
     },
+    containPlayer: function(sprite) {
+        var contained = Utils.containHelper(sprite, {x: 0, y: 0, width: 1280, height: 720});
+
+        if (!contained) {
+            return;
+        }
+
+        if (contained === "left") {
+            if (sprite.vx > 0) {
+                sprite.vx = 0;
+            }
+        } else if (contained === "right") {
+            if (sprite.vx < 0) {
+                sprite.vx = 0;
+            }
+        } else if (contained === "top") {
+            if (sprite.vy < 0) {
+                sprite.vy = 0;
+            }
+        } else if (contained === "bottom") {
+            if (sprite.vy > 0) {
+                sprite.vy = 0;
+            }
+        }
+    },
     keyboardHelper: function(keyCode) {
         var key = {};
         key.code = keyCode;

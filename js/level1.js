@@ -53,6 +53,8 @@ Levels.level1 = {
         stage.addChild(hero);
     },
     state: function() {
+        Utils.containPlayer(hero);
+
         hero.x += hero.vx;
         hero.y += hero.vy;
     },
