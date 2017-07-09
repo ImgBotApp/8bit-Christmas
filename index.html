@@ -8,6 +8,7 @@
     <title>Have a Very 8 bit Christmas</title>
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.3/pixi.js"></script>
     <script src="js/Utils.js"></script>
 
@@ -15,6 +16,12 @@
         // GLOBALS
         var renderer;
         var stage;
+        var bgMusic = new Howl({
+            src: ['music/menu.ogg', 'music/menu.mp3'],
+            autoplay: true,
+            loop: true
+        });
+        bgMusic.play();
 
         var setupObj;
         

@@ -92,6 +92,7 @@ Levels.characterSelectionScreen = {
     },
     destroy: function() {
         console.log("Destroying character selection screen");
+        bgMusic.stop();
         stage.removeChild(chooseText);
 
         for (var i = 0; i < heros.length; i++) {
