@@ -3,7 +3,12 @@ Levels.level1 = {
     setup: function(setupObj) {
         console.log("Loading level 1");
 
-        hero =  new PIXI.Sprite(PIXI.loader.resources["images/ariel-sprite.png"].texture);
+        hero = new PIXI.Sprite(PIXI.loader.resources["images/ariel-sprite.png"].texture);
+
+        hero.vx = 0;
+        hero.vy = 0;
+        hero.scale.set(0.1, 0.1);
+        hero.x = 128;
 
         hero.interactive = false;
         hero.buttonMode = false;
@@ -61,6 +66,10 @@ Levels.level1 = {
     destroy: function() {
         console.log("Destroying level 1");
 
+        stage.removeChild(hero.sprite);
+        bgMusic.stop();
+
+        setupObj = new PIXI.Sprite(PIXI.loader.resources["images/bee-sprite.png"].texture);
         activeLevel = Levels.level2;
     }
 }
