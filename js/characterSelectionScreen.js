@@ -38,12 +38,6 @@ Levels.characterSelectionScreen = {
             },
             {
                 "sprite": new PIXI.Sprite(
-                    PIXI.loader.resources["images/sam-sprite.png"].texture
-                ),
-                "name": new PIXI.Text("Sam", {fontFamily: "Arial", fontSize: 22, fill: "white"})
-            },
-            {
-                "sprite": new PIXI.Sprite(
                     PIXI.loader.resources["images/ariel-sprite.png"].texture
                 ),
                 "name": new PIXI.Text("Ariel", {fontFamily: "Arial", fontSize: 22, fill: "white"})

@@ -38,7 +38,6 @@
     </script>
 
     <!-- Levels -->
-    <script src="js/characterSelectionScreen.js"></script>
     <script src="js/level1.js"></script>
 
     <script>
@@ -62,7 +61,7 @@
 
         // INIT
         (function() {
-            activeLevel = Levels.characterSelectionScreen;
+            activeLevel = Levels.level1;
             setupObj = {};
 
             var type = "WebGL";
@@ -86,7 +85,6 @@
                 .add("images/finn-sprite.png")
                 .add("images/james-sprite.png")
                 .add("images/padme-sprite.png")
-                .add("images/sam-sprite.png")
                 .load(gameLoop);
         }());
     </script>

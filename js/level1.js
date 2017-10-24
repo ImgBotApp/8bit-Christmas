@@ -3,7 +3,7 @@ Levels.level1 = {
     setup: function(setupObj) {
         console.log("Loading level 1");
 
-        hero = setupObj.sprite;
+        hero =  new PIXI.Sprite(PIXI.loader.resources["images/ariel-sprite.png"].texture);
 
         hero.interactive = false;
         hero.buttonMode = false;
