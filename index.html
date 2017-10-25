@@ -9,7 +9,7 @@
 </head>
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.3/pixi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.6/pixi.js"></script>
     <script src="js/Utils.js"></script>
 
     <script>
@@ -32,9 +32,8 @@
         var activeLevel;
 
         var left = Utils.keyboardHelper(65);
-        var up = Utils.keyboardHelper(87);
         var right = Utils.keyboardHelper(68);
-        var down = Utils.keyboardHelper(83);
+        var spacebar = Utils.keyboardHelper(32);
     </script>
 
     <!-- Levels -->
@@ -78,6 +77,8 @@
             stage = new PIXI.Container();
 
             PIXI.loader
+                .add("images/background-1.png")
+                .add("images/portal.png")
                 .add("images/ariel-sprite.png")
                 .add("images/bee-sprite.png")
                 .add("images/chelsea-sprite.png")

@@ -22,7 +22,7 @@ var Utils = {
 
         return undefined;
     },
-    containPlayer: function(sprite) {
+    containObject: function(sprite) {
         var contained = Utils.containHelper(sprite, {x: 0, y: 0, width: 1280, height: 720});
 
         if (!contained) {
