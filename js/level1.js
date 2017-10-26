@@ -8,12 +8,20 @@ Levels.level1 = {
     setup: function(setupObj) {
         console.log("Loading level 1");
 
-        destroyAfterAnimation = 0;
+        bgMusic = new Howl({
+            src: ['music/level-1.mp3'],
+            autoplay: true,
+            volume: 0.4,
+            loop: true
+        });
+        bgMusic.play();
+
         background = new PIXI.Sprite(PIXI.loader.resources["images/background-1.png"].texture);
         portal = new PIXI.Sprite(PIXI.loader.resources["images/portal.png"].texture);
-        hero = new PIXI.Sprite(PIXI.loader.resources["images/ariel-sprite.png"].texture);
+        hero = Utils.createAndInitHero("images/ariel-sprite.png");
         help = new PIXI.Text(" [a] = move left\n  [d] = move right\n[space] = jump", {fontFamily : "Courier, monospace", fontSize: 24, fill : 0xffffff, align : "center"});
         goal = new PIXI.Text("Walk into the portal", {fontFamily : "Courier, monospace", fontSize: 48, fill : 0xffffff, align : "center"});
+        destroyAfterAnimation = 0;
 
         goal.x = 640;
         goal.y = 200;
@@ -27,40 +35,6 @@ Levels.level1 = {
         portal.buttonMode = false;
         portal.x = 1170;
         portal.y = 350;
-
-        hero.vx = 0;
-        hero.vy = 0;
-        hero.scale.set(0.1, 0.1);
-        hero.y = 450;
-
-        hero.interactive = false;
-        hero.buttonMode = false;
-
-        left.press = function() {
-            hero.vx = -3;
-        };
-        left.release = function() {
-            if (!right.isDown) {
-                hero.vx = 0;
-            }
-        };
-
-        right.press = function() {
-            hero.vx = 3;
-        };
-        right.release = function() {
-            if (!left.isDown) {
-                hero.vx = 0;
-            }
-        };
-
-        spacebar.press = function() {
-            if (hero.vy === 0) {
-                hero.vy = -3;
-            }
-        }
-
-        console.log(hero);
 
         stage.addChild(background);
         stage.addChild(portal);
@@ -85,8 +59,8 @@ Levels.level1 = {
         Utils.containObject(hero);
 
         if (hero.vy !== 0) {
-            if (hero.y <= 400) {
-                hero.vy = 3;
+            if (hero.y <= 350) {
+                hero.vy = 4;
             }
         }
 
@@ -113,7 +87,7 @@ Levels.level1 = {
 
         bgMusic.stop();
 
-        setupObj = new PIXI.Sprite(PIXI.loader.resources["images/bee-sprite.png"].texture);
+        setupObj = {};
         activeLevel = Levels.level2;
     }
 }

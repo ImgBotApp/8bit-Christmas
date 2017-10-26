@@ -1,4 +1,21 @@
 var Utils = {
+    getQueryParam: function (name) {
+        var url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+        var results = regex.exec(url);
+        
+        if (!results) {
+            return null;
+        }
+        
+        if (!results[2]) {
+            return '';
+        }
+        
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    },
     containHelper: function(sprite, container) {
         if (sprite.x < container.x) {
             sprite.x = container.x;
@@ -93,5 +110,48 @@ var Utils = {
     },
     randomInt: function(min, max) {
         return Math.floor(Math.random() * (max - min) ) + min;
+    },
+    collisionDetected: function(r1, r2) {
+        return !(r2.x > (r1.x + r1.width) || 
+                (r2.x + r2.width) < r1.x || 
+                r2.y > (r1.y + r1.height) ||
+                (r2.y + r2.height) < r1.y);
+    },
+    createAndInitHero: function(spriteLocation) {
+        var hero = new PIXI.Sprite(PIXI.loader.resources[spriteLocation].texture);
+
+        hero.vx = 0;
+        hero.vy = 0;
+        hero.scale.set(0.1, 0.1);
+        hero.y = 450;
+
+        hero.interactive = false;
+        hero.buttonMode = false;
+
+        left.press = function() {
+            hero.vx = -4;
+        };
+        left.release = function() {
+            if (!right.isDown) {
+                hero.vx = 0;
+            }
+        };
+
+        right.press = function() {
+            hero.vx = 4;
+        };
+        right.release = function() {
+            if (!left.isDown) {
+                hero.vx = 0;
+            }
+        };
+
+        spacebar.press = function() {
+            if (hero.vy === 0) {
+                hero.vy = -4;
+            }
+        }
+
+        return hero;
     }
 }

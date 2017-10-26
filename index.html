@@ -16,12 +16,7 @@
         // GLOBALS
         var renderer;
         var stage;
-        var bgMusic = new Howl({
-            src: ['music/menu.mp3'],
-            autoplay: true,
-            loop: true
-        });
-        bgMusic.play();
+        var bgMusic;
 
         var setupObj;
         
@@ -38,6 +33,7 @@
 
     <!-- Levels -->
     <script src="js/level1.js"></script>
+    <script src="js/level2.js"></script>
 
     <script>
         function gameLoop() {
@@ -60,7 +56,15 @@
 
         // INIT
         (function() {
-            activeLevel = Levels.level1;
+            var currentLevel = Utils.getQueryParam("level");
+
+            if (!currentLevel) {
+                currentLevel = "1";
+            }
+
+            currentLevel = "level" + currentLevel;
+
+            activeLevel = Levels[currentLevel];
             setupObj = {};
 
             var type = "WebGL";
