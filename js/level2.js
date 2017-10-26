@@ -21,7 +21,7 @@ Levels.level2 = {
         portal = new PIXI.Sprite(PIXI.loader.resources["images/portal.png"].texture);
         hero = Utils.createAndInitHero("images/bee-sprite.png");
         help = new PIXI.Text(" [a] = move left\n  [d] = move right\n[space] = jump", {fontFamily : "Courier, monospace", fontSize: 24, fill : 0xffffff, align : "center"});
-        goal = new PIXI.Text("Jump over the obstacles", {fontFamily : "Courier, monospace", fontSize: 48, fill : 0xffffff, align : "center"});
+        goal = new PIXI.Text("Avoid the obstacles", {fontFamily : "Courier, monospace", fontSize: 48, fill : 0xffffff, align : "center"});
         destroyAfterAnimation = 0;
 
         goal.x = 600;
@@ -47,7 +47,7 @@ Levels.level2 = {
         obstacles[1].drawRect(370, 545, 25, 25);
         obstacles[1].endFill();
         obstacles[1].vy = -1;
-        obstacles[1].yMin = 400;
+        obstacles[1].yMin = 390;
         obstacles[1].yMax = 545;
 
         stage.addChild(background);
@@ -65,9 +65,9 @@ Levels.level2 = {
             destroyAfterAnimation += 1;
 
             hero.rotation += 0.1;
-            hero.scale.set(hero.scale.x * 1.01, hero.scale.y * 1.01);
+            hero.scale.set(hero.scale.x / 1.01, hero.scale.y / 1.01);
 
-            if (destroyAfterAnimation > 240) {
+            if (destroyAfterAnimation > 200) {
                 doDestroy = true;
             }
 
@@ -119,8 +119,6 @@ Levels.level2 = {
             if (Utils.collisionDetected(heroHitbox, obstacles[i].getBounds())) {
                 console.log("Collision with obstacle!");
                 // todo: death animation
-                hero.vx = 0;
-                hero.vy = 0;
                 hero.x = 0;
                 hero.y = 450;
             }
@@ -128,6 +126,16 @@ Levels.level2 = {
 
         if (hero.x >= portal.x) {
             destroyAfterAnimation = 1;
+            hero.x = portal.x + 30;
+
+            bgMusic.stop();
+            bgMusic = new Howl({
+                src: ['music/warp.mp3'],
+                autoplay: true,
+                volume: 0.6,
+                loop: true
+            });
+            bgMusic.play();
         }
     },
     destroy: function() {

@@ -47,9 +47,9 @@ Levels.level1 = {
             destroyAfterAnimation += 1;
 
             hero.rotation += 0.1;
-            hero.scale.set(hero.scale.x * 1.01, hero.scale.y * 1.01);
+            hero.scale.set(hero.scale.x / 1.01, hero.scale.y / 1.01);
 
-            if (destroyAfterAnimation > 240) {
+            if (destroyAfterAnimation > 200) {
                 doDestroy = true;
             }
 
@@ -74,6 +74,16 @@ Levels.level1 = {
 
         if (hero.x >= portal.x) {
             destroyAfterAnimation = 1;
+            hero.x = portal.x + 50;
+
+            bgMusic.stop();
+            bgMusic = new Howl({
+                src: ['music/warp.mp3'],
+                autoplay: true,
+                volume: 0.6,
+                loop: true
+            });
+            bgMusic.play();
         }
     },
     destroy: function() {
