@@ -37,7 +37,7 @@ Levels.level2 = {
         portal.x = 1170;
         portal.y = 350;
 
-        obstacles = [new PIXI.Graphics(), new PIXI.Graphics()];
+        obstacles = [new PIXI.Graphics(), new PIXI.Graphics(), new PIXI.Graphics(), new PIXI.Graphics()];
 
         obstacles[0].beginFill(0xFF0000, 1);
         obstacles[0].drawRect(170, 545, 25, 25);
@@ -49,6 +49,23 @@ Levels.level2 = {
         obstacles[1].vy = -1;
         obstacles[1].yMin = 390;
         obstacles[1].yMax = 545;
+
+        obstacles[2].beginFill(0xFF0000, 1);
+        obstacles[2].drawRect(570, 545, 25, 25);
+        obstacles[2].endFill();
+        obstacles[2].vx = -1;
+        obstacles[2].xMin = 570;
+        obstacles[2].xMax = 700;
+
+        obstacles[3].beginFill(0xFF0000, 1);
+        obstacles[3].drawRect(800, 545, 25, 25);
+        obstacles[3].endFill();
+        obstacles[3].vy = -1;
+        obstacles[3].yMin = 390;
+        obstacles[3].yMax = 545;
+        obstacles[3].vx = -1;
+        obstacles[3].xMin = 800;
+        obstacles[3].xMax = 1000;
 
         stage.addChild(background);
         stage.addChild(portal);
