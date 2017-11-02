@@ -80,7 +80,7 @@ Levels.level1 = {
             bgMusic = new Howl({
                 src: ['music/warp.mp3'],
                 autoplay: true,
-                volume: 0.6,
+                volume: 0.2,
                 loop: true
             });
             bgMusic.play();

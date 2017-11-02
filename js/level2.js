@@ -12,7 +12,7 @@ Levels.level2 = {
         bgMusic = new Howl({
             src: ['music/level-2.mp3'],
             autoplay: true,
-            volume: 0.9,
+            volume: 0.4,
             loop: true
         });
         bgMusic.play();
@@ -132,7 +132,7 @@ Levels.level2 = {
             bgMusic = new Howl({
                 src: ['music/warp.mp3'],
                 autoplay: true,
-                volume: 0.6,
+                volume: 0.2,
                 loop: true
             });
             bgMusic.play();
